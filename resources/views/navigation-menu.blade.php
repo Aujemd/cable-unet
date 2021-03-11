@@ -15,6 +15,17 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
+                    @if (Auth::user()->isAdmin)
+                        <x-jet-nav-link href="{{ route('services') }}" :active="request()->routeIs('services')">
+                            Servicios
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('packages') }}" :active="request()->routeIs('packages')">
+                            Paquetes
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('plans') }}" :active="request()->routeIs('plans')">
+                            Planes
+                        </x-jet-nav-link>
+                    @endif
                 </div>
             </div>
 
