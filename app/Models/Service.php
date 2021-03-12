@@ -9,8 +9,8 @@ class Service extends Model
 {
     use HasFactory;
 
-    public function package()
+    public function packages()
     {
-        return $this->belongsTo(Package::class);
+        return $this->belongsToMany(Package::class);
     }
 }

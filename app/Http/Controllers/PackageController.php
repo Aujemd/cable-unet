@@ -53,7 +53,7 @@ class PackageController extends Controller
         foreach ($request->all() as $key => $value) {
             if ($key != "_token") {
                 $service = Service::findOrFail($request->all()["service" . $value]);
-                $service->package_id = $package->id;
+                $service->packages()->attach($package->id);
                 $service->save();
                 $price += $service->price;
             }
