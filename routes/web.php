@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Http\Controllers\ServiceController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,9 +23,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/services', function () {
-    return view('services');
-})->name('services');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/services', function () {
+//     return view('services');
+// })->name('services');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/packages', function () {
     return view('packages');
@@ -33,4 +35,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/plans', function () {
     return view('plans');
 })->name('plans');
 
-
+Route::resource('/services', ServiceController::class)->names([
+    'index' => 'services',
+    'create' => 'services',
+    'store' => 'services',
+    'show' => 'services',
+    'edit' => 'services',
+    'update' => 'services',
+    'destroy' => 'services'
+]);
