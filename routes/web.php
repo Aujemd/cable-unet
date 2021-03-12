@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\PackageController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,12 +36,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/plans', function () {
     return view('plans');
 })->name('plans');
 
-Route::resource('/services', ServiceController::class)->names([
-    'index' => 'services',
-    'create' => 'services',
-    'store' => 'services',
-    'show' => 'services',
-    'edit' => 'services',
-    'update' => 'services',
-    'destroy' => 'services'
-]);
+Route::resource('/services', ServiceController::class);
+
+Route::resource('/packages', PackageController::class);
