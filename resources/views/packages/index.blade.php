@@ -1,15 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="font-semibold text-xl text-gray-800 leading-tight mb-20">
+        <h1 class="font-semibold text-xl text-gray-800 leading-tight mb-10">
             Paquetes
         </h1>
+        <h3 class="font-semibold text-gray-800 leading-tight">
+            Creación de Paquetes
+        </h3>
         <form action="http://localhost:8000/packages" method="POST">
             @csrf
             <div class="shadow sm:rounded-md sm:overflow-hidden">
                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                     <div class="grid grid-cols-3 gap-6">
                         <div class="col-span-6 sm:col-span-3">
-                            <label for="type" class="block text-sm font-medium text-gray-700">Servicio</label>
+                            <label for="type" class="block text-sm font-medium text-gray-700">Servicios</label>
                             @foreach ($services as $service)
                                 <input type="checkbox" class="form-checkbox h-5 w-5 text-indigo-600"
                                     name="service{{ $service->id }}" value="{{ $service->id }}"><span
@@ -22,7 +25,7 @@
                     <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                         <button type="submit"
                             class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Guardar
+                            Crear Paquete
                         </button>
                     </div>
                 </div>
