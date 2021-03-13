@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\PackageController;
+use App\Http\Controllers\PlanController;
+use App\Http\Controllers\ChannelController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,16 +26,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/services', function () {
-    return view('services');
-})->name('services');
+Route::resource('/services', ServiceController::class);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/packages', function () {
-    return view('packages');
-})->name('packages');
+Route::resource('/packages', PackageController::class);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/plans', function () {
-    return view('plans');
-})->name('plans');
+Route::resource('/plans', PlanController::class);
 
-
+Route::resource('/channels', ChannelController::class);
