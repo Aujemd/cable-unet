@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Service;
-use App\Models\Package;
-use App\Models\Plan;
+use App\Models\Channel;
 
-class PackageController extends Controller
+
+class ChannelController extends Controller
 {
     public function __construct()
     {
@@ -20,10 +19,8 @@ class PackageController extends Controller
      */
     public function index()
     {
-        return view('packages.index', [
-            'services' => Service::all(),
-            'packages' => Package::all(),
-            'plans' => Plan::all()
+        return view('channels.index', [
+            'channels' => Channel::all()
         ]);
     }
 
@@ -45,32 +42,12 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
-        $package = new Package();
-        $package->price = 0;
-        $package->user_id = 0;
-        $package->name = "test";
-        $package->save();
-        $price = 0;
+        $channel = new Channel();
+        $channel->name = $request->all()['name'];
+        $channel->price = $request->all()['price'];
+        $channel->save();
 
-        foreach ($request->all() as $key => $value) {
-            if ($key != "_token") {
-                if (str_contains($key, 'service')) {
-                    $service = Service::findOrFail($request->all()["service" . $value]);
-                    $service->packages()->attach($package->id);
-                    $service->save();
-                    $price += $service->price;
-                } else if (str_contains($key, 'plan')) {
-                    $plan = Plan::findOrFail($request->all()["plan" . $value]);
-                    $plan->packages()->attach($package->id);
-                    $plan->save();
-                    $price += $plan->price;
-                }
-            }
-        }
-
-        $package->price = $price;
-        $package->save();
-        return redirect('http://localhost:8000/packages');
+        return redirect('http://localhost:8000/channels');
     }
 
     /**

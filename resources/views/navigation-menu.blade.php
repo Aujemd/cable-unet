@@ -22,7 +22,7 @@
                         <x-jet-nav-link href="/packages">
                             Paquetes
                         </x-jet-nav-link>
-                        <x-jet-nav-link href="{{ route('plans') }}" :active="request()->routeIs('plans')">
+                        <x-jet-nav-link href="/plans">
                             Planes
                         </x-jet-nav-link>
                     @endif

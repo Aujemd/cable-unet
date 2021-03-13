@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Service;
-use App\Models\Package;
+use App\Models\Channel;
 use App\Models\Plan;
 
-class PackageController extends Controller
+class PlanController extends Controller
 {
     public function __construct()
     {
@@ -20,9 +19,8 @@ class PackageController extends Controller
      */
     public function index()
     {
-        return view('packages.index', [
-            'services' => Service::all(),
-            'packages' => Package::all(),
+        return view('plans.index', [
+            'channels' => Channel::all(),
             'plans' => Plan::all()
         ]);
     }
@@ -45,32 +43,25 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
-        $package = new Package();
-        $package->price = 0;
-        $package->user_id = 0;
-        $package->name = "test";
-        $package->save();
+
+        $plan = new Plan();
+        $plan->name = $request->all()["name"];
+        $plan->price = 0;
+        $plan->save();
         $price = 0;
 
         foreach ($request->all() as $key => $value) {
-            if ($key != "_token") {
-                if (str_contains($key, 'service')) {
-                    $service = Service::findOrFail($request->all()["service" . $value]);
-                    $service->packages()->attach($package->id);
-                    $service->save();
-                    $price += $service->price;
-                } else if (str_contains($key, 'plan')) {
-                    $plan = Plan::findOrFail($request->all()["plan" . $value]);
-                    $plan->packages()->attach($package->id);
-                    $plan->save();
-                    $price += $plan->price;
-                }
+            if ($key != "_token" && $key != 'name') {
+                $channel = Channel::findOrFail($request->all()["channel" . $value]);
+                $channel->plans()->attach($plan->id);
+                $channel->save();
+                $price += $channel->price;
             }
         }
 
-        $package->price = $price;
-        $package->save();
-        return redirect('http://localhost:8000/packages');
+        $plan->price = $price;
+        $plan->save();
+        return redirect('http://localhost:8000/plans');
     }
 
     /**
