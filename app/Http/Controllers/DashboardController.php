@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Package;
 use App\Models\User;
+use App\Models\PackageUser;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 
 class DashboardController extends Controller
 {
@@ -21,10 +23,12 @@ class DashboardController extends Controller
     public function index()
     {
 
+        $users = User::all();
         $packages = Package::all();
 
         return view('dashboard.index', [
-            'packages' => $packages
+            'packages' => $packages,
+            'users' => $users
         ]);
     }
 
@@ -46,6 +50,7 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
+
         $user_id = $request->all()['user_id'];
         $user = User::findOrFail($user_id);
 
