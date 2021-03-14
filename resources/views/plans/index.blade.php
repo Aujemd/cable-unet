@@ -44,7 +44,7 @@
             Planes creados
         </h3>
         <div class="md:w-3/4">
-            <div class="max-w-4xl mx-auto md:flex">
+            <div class="max-w-4xl mx-auto md:flex flex-wrap	">
                 @foreach ($plans as $plan)
                     <div
                         class="w-full md:w-1/3 md:max-w-none bg-white px-8 md:px-10 py-8 md:py-10 mb-3 mx-auto md:my-2 rounded-md shadow-lg shadow-gray-600 md:flex md:flex-col">
