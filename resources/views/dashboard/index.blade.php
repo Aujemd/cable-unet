@@ -7,7 +7,7 @@
             <h3 class="font-semibold text-gray-800 leading-tight">
                 Paquetes disponibles
             </h3>
-            <form action="http://localhost:8000/dashboard" method="POST">
+            <form action="dashboard" method="POST">
                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                     <button type="submit"
                         class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
@@ -116,7 +116,7 @@
             <h3 class="font-semibold text-gray-800 leading-tight">
                 Solicitudes de cambio
             </h3>
-            <form action="http://localhost:8000/changes" method="POST">
+            <form action="changes" method="POST">
                 @csrf
                 <table class="table-auto w-full">
                     <thead>

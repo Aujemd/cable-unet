@@ -70,7 +70,7 @@ class PackageController extends Controller
 
         $package->price = $price;
         $package->save();
-        return redirect('http://localhost:8000/packages');
+        return redirect('packages');
     }
 
     /**

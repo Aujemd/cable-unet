@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Service;
+use App\Models\Channel;
 
-class ServiceController extends Controller
+class ProgramsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth:sanctum', 'verified']);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,9 +14,12 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return view('services.index', [
-            'services' => Service::all(),
-        ]);
+        $channels = Channel::latest()->get();
+        return view('programs.index',compact('channels'));
+        // return view('programs.index', [
+        //     'channels' => Channel::all()
+            
+        // ]);
     }
 
     /**
@@ -41,13 +40,7 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        $service = new Service();
-        $service->type = $request->all()['type'];
-        $service->option = $request->all()['option'];
-        $service->price = $request->all()['price'];
-        $service->save();
-
-        return redirect('services');
+        //
     }
 
     /**

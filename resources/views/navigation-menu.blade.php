@@ -23,7 +23,18 @@
                             Paquetes
                         </x-jet-nav-link>
                         <x-jet-nav-link href="/plans">
-                            Planes
+                            planes
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="/users">
+                            Usuarios
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="/programs">
+                            Programacion
+                        </x-jet-nav-link>
+                    @endif
+                    @if (!Auth::user()->isAdmin)
+                        <x-jet-nav-link href="/bill">
+                            Factura
                         </x-jet-nav-link>
                     @endif
                 </div>

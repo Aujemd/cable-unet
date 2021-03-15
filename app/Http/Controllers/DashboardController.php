@@ -61,7 +61,8 @@ class DashboardController extends Controller
                 $package->save();
             }
         }
-        return redirect('http://localhost:8000/bill/' . $user_id);
+        return back();
+        // return redirect('bill' . $user_id);
     }
 
     /**

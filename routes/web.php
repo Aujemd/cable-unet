@@ -20,6 +20,8 @@ use App\Http\Controllers\ChannelController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\ChangesController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProgramsController;
 
 
 Route::get('/', function () {
@@ -39,3 +41,7 @@ Route::resource('/channels', ChannelController::class);
 Route::resource('/bill', BillController::class);
 
 Route::resource('/changes', ChangesController::class);
+
+Route::resource('/users', UserController::class);
+
+Route::resource('/programs', ProgramsController::class);

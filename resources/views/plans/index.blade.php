@@ -6,7 +6,7 @@
         <h3 class="font-semibold text-gray-800 leading-tight">
             Creación de Planes
         </h3>
-        <form action="http://localhost:8000/plans" method="POST">
+        <form action="plans" method="POST">
             @csrf
             <div class="shadow sm:rounded-md sm:overflow-hidden">
                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">

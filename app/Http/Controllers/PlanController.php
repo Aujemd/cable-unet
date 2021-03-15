@@ -61,7 +61,7 @@ class PlanController extends Controller
 
         $plan->price = $price;
         $plan->save();
-        return redirect('http://localhost:8000/plans');
+        return redirect('plans');
     }
 
     /**

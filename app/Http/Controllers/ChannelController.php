@@ -47,7 +47,7 @@ class ChannelController extends Controller
         $channel->price = $request->all()['price'];
         $channel->save();
 
-        return redirect('http://localhost:8000/channels');
+        return redirect('channels');
     }
 
     /**

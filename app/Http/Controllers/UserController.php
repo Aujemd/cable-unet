@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Service;
+use App\Models\User;
+use App\Models\Package;
 
-class ServiceController extends Controller
+class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth:sanctum', 'verified']);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,9 +15,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return view('services.index', [
-            'services' => Service::all(),
-        ]);
+        $users = User::latest()->get();
+        return view('users.index',compact('users'));
     }
 
     /**
@@ -41,13 +37,7 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        $service = new Service();
-        $service->type = $request->all()['type'];
-        $service->option = $request->all()['option'];
-        $service->price = $request->all()['price'];
-        $service->save();
-
-        return redirect('services');
+        //
     }
 
     /**
@@ -79,9 +69,17 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        if(!$user->isAdmin){
+            $user->isAdmin=true;
+        }else{
+            $user->isAdmin=false;
+        }
+        
+        $user->save();
+
+        return back()->with('status','Cambio con exito');
     }
 
     /**
@@ -90,8 +88,10 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return back()->with('status','Eliminado con exito');
     }
+
 }

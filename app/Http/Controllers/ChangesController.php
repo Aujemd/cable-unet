@@ -35,13 +35,13 @@ class ChangesController extends Controller
                 $user->status = false;
                 $user->save();
                 $package->save();
-                return redirect('http://localhost:8000/dashboard');
+                return redirect('dashboard');
             } else if (str_contains($key, 'rejected')) {
                 $user = User::findOrFail($value);
                 $user->change = 0;
                 $user->status = false;
                 $user->save();
-                return redirect('http://localhost:8000/dashboard');
+                return redirect('dashboard');
             }
         }
 
@@ -50,6 +50,6 @@ class ChangesController extends Controller
         $user->change = $request->all()['change'];
         $user->status = true;
         $user->save();
-        return redirect('http://localhost:8000/dashboard');
+        return redirect('dashboard');
     }
 }
