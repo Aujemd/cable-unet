@@ -17,14 +17,16 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ChannelController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BillController;
+use App\Http\Controllers\ChangesController;
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::resource('/dashboard', DashboardController::class);
 
 Route::resource('/services', ServiceController::class);
 
@@ -33,3 +35,7 @@ Route::resource('/packages', PackageController::class);
 Route::resource('/plans', PlanController::class);
 
 Route::resource('/channels', ChannelController::class);
+
+Route::resource('/bill', BillController::class);
+
+Route::resource('/changes', ChangesController::class);
