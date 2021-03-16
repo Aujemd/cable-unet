@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Channel;
 use App\Models\Program;
 
-class ProgramsController extends Controller
+
+class ScheduleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +15,7 @@ class ProgramsController extends Controller
      */
     public function index()
     {
-        $channels = Channel::latest()->get();
-        $name = "";
-        return view('programs.index',compact('channels'));
-        // return view('programs.index', [
-        //     'channels' => Channel::all()
-            
-        // ]);
+        //
     }
 
     /**
@@ -63,8 +57,10 @@ class ProgramsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($name)
-    {      
-        return view('addprograms.index',compact('name'));
+    {
+        $program = Program::latest()->get();
+        
+        return view('schedule.index',compact('program','name'));
     }
 
     /**
@@ -74,22 +70,9 @@ class ProgramsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $name)
+    public function update(Request $request, $id)
     {
-        $program = new Program();
-        $program->name = $request->all()['program'];
-        $program->channel = $name;
-        $program->day = $request->all()['day'];
-        $program->start = $request->all()['start'];
-        $program->end = $request->all()['end'];
-
-        $program->save();
-
-        $channels = Channel::latest()->get();
-        // return back()->with('status','Actualizado con exito');
-
-        return view('programs.index',compact('channels'))->with('status','Creado con exito');
-
+        //
     }
 
     /**

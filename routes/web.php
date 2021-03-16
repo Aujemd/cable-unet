@@ -22,7 +22,8 @@ use App\Http\Controllers\BillController;
 use App\Http\Controllers\ChangesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProgramsController;
-
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ScheduleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -45,3 +46,5 @@ Route::resource('/changes', ChangesController::class);
 Route::resource('/users', UserController::class);
 
 Route::resource('/programs', ProgramsController::class);
+
+Route::resource('/schedule', ScheduleController::class);

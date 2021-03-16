@@ -9,17 +9,24 @@
         </div>
         @endif
         <br>
-        <table class="table-auto border-separate border container mx-auto rounded">
+        <table class="table-fixed border-separate border container mx-auto rounded">
+            <thead>
+                <tr>
+                <th class="text-xl">Usuario</th>
+                <th class="text-xl">Email</th>
+                <th class="text-xl">Estado</th>
+                </tr>
+            </thead>
             <tbody>
             @foreach($users as $user)
             
                 <tr>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->email}}</td>
+                    <td class="text-center">{{$user->name}}</td>
+                    <td class="text-center">{{$user->email}}</td>
                     @if ($user->isAdmin)
-                        <td>Administrador</td>
+                        <td class="text-center">Administrador</td>
                     @else
-                        <td>Suscriptor</td>
+                        <td class="text-center">Suscriptor</td>
                     @endif
                     <!-- <td>
                     <a href="" class="">Editar</a>

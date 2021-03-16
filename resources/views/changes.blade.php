@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <form action="http://localhost:8000/changes" method="POST">
+        <form action="changes" method="POST">
             @csrf
             <input type="text" name="user_id" value="{{ Auth::user()->id }}" style="display: none" />
             <div class="max-w mx-auto md:flex">

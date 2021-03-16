@@ -1,16 +1,37 @@
 <x-app-layout>
     <x-slot name="header">
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
         <h1 class="font-semibold text-xl text-gray-800 leading-tight mb-10">
             Programas de Canales
         </h1>
-        <div class="col-span-6 sm:col-span-3">
-            <label for="type" class="block text-sm font-medium text-gray-700">Canales</label>
-            <select id="name" name="name" required
-                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                @foreach($channels as $channel)
-                <option>{{$channel->name}}</option>
-                @endforeach
-            </select>
-        </div>
+        <table class="table-fixed border-separate border container mx-auto rounded">
+            <tbody>
+            @foreach($channels as $channel)
+                <tr>
+                    <td class="text-center">{{$channel->name}}</td>
+                    <td>
+                        
+                        <a href="{{ route('schedule.edit',$channel->name) }}"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Ver Programacion
+                        </a>
+                        
+                    </td>
+                    <td> 
+                        
+                        <a href="{{ route('programs.edit',$channel->name) }}"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Agregar programacion
+                        </a>
+                        
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
     </x-slot>
 </x-app-layout>
