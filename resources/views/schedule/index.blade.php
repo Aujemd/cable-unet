@@ -17,7 +17,20 @@
                 @if($prog->channel == $name)
                     @for ($i = 1; $i < 8; $i++)
                         @if($prog->day == $i )                          
-                            <div class="grid row-start-{{$prog->end}} row-end-{{$prog->end}} col-start-{{$i}} col-end-{{$i}}"> {{$prog->name}} {{$prog->start}}-{{$prog->end}}</div>
+                            <div class="grid row-start-{{$prog->end}} row-end-{{$prog->end}} col-start-{{$i}} col-end-{{$i}}"> 
+                                {{$prog->name}}. (Hora:{{$prog->start}}-{{$prog->end}}) 
+                                
+                                <form action="{{ route('schedule.destroy', $prog->id) }}" class="text-center " method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input 
+                                    type="submit" 
+                                    value="Eliminar" 
+                                    class="bg-red-600 text-white rounded "
+                                    onclick="return confirm('Borrar Programa?')"
+                                    >
+                                </form>
+                            </div>
                         @endif
                     @endfor
                 @endif

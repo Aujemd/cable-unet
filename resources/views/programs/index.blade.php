@@ -13,21 +13,17 @@
             @foreach($channels as $channel)
                 <tr>
                     <td class="text-center">{{$channel->name}}</td>
-                    <td>
-                        
-                        <a href="{{ route('schedule.edit',$channel->name) }}"
+                    <td>                      
+                        <a href="{{ route('schedule.show',$channel->name) }}"
                             class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Ver Programacion
-                        </a>
-                        
+                        </a>                       
                     </td>
-                    <td> 
-                        
+                    <td>                       
                         <a href="{{ route('programs.edit',$channel->name) }}"
                             class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Agregar programacion
-                        </a>
-                        
+                        </a>                      
                     </td>
                 </tr>
             @endforeach

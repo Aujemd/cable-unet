@@ -45,9 +45,10 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($name)
     {
-        //
+        $program = Program::orderBy('start', 'asc')->get();
+        return view('schedule.index',compact('program','name'));
     }
 
     /**
@@ -58,8 +59,8 @@ class ScheduleController extends Controller
      */
     public function edit($name)
     {
-        $program = Program::latest()->get();
-        
+        // $program = Program::latest()->get();
+        $program = Program::orderBy('start', 'asc')->get();
         return view('schedule.index',compact('program','name'));
     }
 
@@ -81,8 +82,12 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($prog_id)
+    {      
+        // dd($prog_id);
+        $program = Program::where('id',$prog_id)->delete();
+        // return view('schedule.index',compact('program','name'));
+        // $prog->delete();
+        return back();
     }
 }

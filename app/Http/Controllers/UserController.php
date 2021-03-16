@@ -89,7 +89,8 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
-    {
+    {   
+        
         $user->delete();
         return back()->with('status','Eliminado con exito');
     }
