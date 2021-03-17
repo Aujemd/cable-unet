@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Service;
+use App\Models\Program;
 
-class ServiceController extends Controller
+
+class ScheduleController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth:sanctum', 'verified']);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,9 +15,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return view('services.index', [
-            'services' => Service::all(),
-        ]);
+        //
     }
 
     /**
@@ -41,13 +36,7 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        $service = new Service();
-        $service->type = $request->all()['type'];
-        $service->option = $request->all()['option'];
-        $service->price = $request->all()['price'];
-        $service->save();
-
-        return redirect('services');
+        //
     }
 
     /**
@@ -56,9 +45,10 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($name)
     {
-        //
+        $program = Program::orderBy('start', 'asc')->get();
+        return view('schedule.index',compact('program','name'));
     }
 
     /**
@@ -67,9 +57,11 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($name)
     {
-        //
+        // $program = Program::latest()->get();
+        $program = Program::orderBy('start', 'asc')->get();
+        return view('schedule.index',compact('program','name'));
     }
 
     /**
@@ -90,8 +82,12 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($prog_id)
+    {      
+        // dd($prog_id);
+        $program = Program::where('id',$prog_id)->delete();
+        // return view('schedule.index',compact('program','name'));
+        // $prog->delete();
+        return back();
     }
 }

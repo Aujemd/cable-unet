@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Service;
+use App\Models\Program;
 
-class ServiceController extends Controller
+class ProgramController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth:sanctum', 'verified']);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,9 +14,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return view('services.index', [
-            'services' => Service::all(),
-        ]);
+        // $program = Program::latest()->get(),compact('program');
+        return view('addprograms.index');
     }
 
     /**
@@ -41,13 +36,7 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        $service = new Service();
-        $service->type = $request->all()['type'];
-        $service->option = $request->all()['option'];
-        $service->price = $request->all()['price'];
-        $service->save();
-
-        return redirect('services');
+        //
     }
 
     /**
